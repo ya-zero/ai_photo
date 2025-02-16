@@ -1,5 +1,5 @@
-from fastapi import FastAPI, File, UploadFile
-from fastapi.responses import HTMLResponse,FileResponse,JSONResponse
+from fastapi import FastAPI, File, UploadFile, Form
+from fastapi.responses import HTMLResponse, FileResponse, JSONResponse
 from fastapi.templating import Jinja2Templates
 import shutil
 import random
@@ -29,17 +29,15 @@ async def upload_file(file: UploadFile = File(...)):
 
 # Эндпоинт для отправки файла в ИИ (с заглушкой)
 @app.post("/send-to-ai/", response_class=HTMLResponse)
-async def send_to_ai(file: UploadFile = File(...)):
-    # Сохранить файл (если нужно)
-    file_path = UPLOAD_DIR / file.filename
-    with file_path.open("wb") as buffer:
-        shutil.copyfileobj(file.file, buffer)
+async def send_to_ai(filename: str = Form(...)):
+    file_path = UPLOAD_DIR / filename
 
-    # Заглушка для анализа
+    if not file_path.exists():
+        return JSONResponse(content={"error": "Файл не найден"}, status_code=400)
+
     random_value = random.randint(0, 100)
 
-    # Передаем имя файла и результат анализа в шаблон
-    return templates.TemplateResponse("ai_result.html", {"request": {}, "filename": file.filename, "result": random_value})
+    return templates.TemplateResponse("ai_result.html", {"request": {}, "filename": filename, "result": random_value})
 
 
 

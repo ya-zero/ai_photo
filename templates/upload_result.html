@@ -13,14 +13,10 @@
     <img src="/uploads/{{ filename }}" alt="Uploaded Image" style="width: 100px; height: 100px;">
     
     <hr>
-    <!-- <form action="/send-to-ai/" method="post" enctype="multipart/form-data">
-        <input type="hidden" name="file" value="{{ filename }}">
+    <form action="/send-to-ai/" method="post">
+        <input type="hidden" name="filename" value="{{ filename }}">
         <button type="submit">Отправить на анализ ИИ</button>
-    </form> -->
-<form action="/send-to-ai/" method="post" enctype="multipart/form-data">
-    <input type="file" name="file" required>
-    <button type="submit">Отправить на анализ</button>
-</form>
+    </form>
 </body>
 </html>
 
