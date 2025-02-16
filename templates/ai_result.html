@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Результат анализа ИИ</title>
+</head>
+<body>
+    <h1>Результат анализа фото</h1>
+    <p>Фото: <strong>{{ filename }}</strong></p>
+    <h3>Вот ваше изображение:</h3>
+    <img src="/uploads/{{ filename }}" alt="Uploaded Image" style="width: 100px; height: 100px;">
+
+    <p>Результат анализа: <strong>{{ result }}</strong></p>
+    <p>Filename: {{ filename }}</p>
+    <p>Result: {{ result }}</p>
+    <hr>
+    <a href="/">Загрузить другое фото</a>
+</body>
+</html>
+

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Результат загрузки</title>
+</head>
+<body>
+    <h1>Загрузка завершена!</h1>
+    <p>Вы загрузили файл: <strong>{{ filename }}</strong></p>
+
+    <h3>Вот ваше изображение:</h3>
+    <img src="/uploads/{{ filename }}" alt="Uploaded Image" style="width: 100px; height: 100px;">
+    
+    <hr>
+    <!-- <form action="/send-to-ai/" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="file" value="{{ filename }}">
+        <button type="submit">Отправить на анализ ИИ</button>
+    </form> -->
+<form action="/send-to-ai/" method="post" enctype="multipart/form-data">
+    <input type="file" name="file" required>
+    <button type="submit">Отправить на анализ</button>
+</form>
+</body>
+</html>
+
+<!-- <form action="/send-to-ai/" method="post" enctype="multipart/form-data">
+    <input type="file" name="file" required>
+    <button type="submit">Отправить на анализ</button>
+</form> -->
